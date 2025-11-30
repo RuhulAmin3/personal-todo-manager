@@ -5,7 +5,10 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-here';
 // Middleware to verify JWT token
 export const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+  // Prefer cookie-based token; fallback to Authorization header for compatibility
+  const cookieToken = req.cookies && req.cookies.token;
+  const headerToken = authHeader && authHeader.split(' ')[1];
+  const token = cookieToken || headerToken;
 
   if (!token) {
     return res.status(401).json({ 

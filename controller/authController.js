@@ -30,11 +30,18 @@ export const signup = async (req, res) => {
     await writeJSONFile('user.json', users);
 
     const token = generateToken(newUser);
+    const isProd = process.env.NODE_ENV === 'production';
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: 'lax',
+      maxAge: 24 * 60 * 60 * 1000,
+      path: '/',
+    });
 
     return res.status(201).json({
       success: true,
       message: 'User created successfully',
-      token,
       user: { id: newUser.id, username: newUser.username },
     });
   } catch (error) {
@@ -61,11 +68,18 @@ export const login = async (req, res) => {
     }
 
     const token = generateToken(user);
+    const isProd = process.env.NODE_ENV === 'production';
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: 'lax',
+      maxAge: 24 * 60 * 60 * 1000,
+      path: '/',
+    });
 
     return res.json({
       success: true,
       message: 'Login successful',
-      token,
       user: { id: user.id, username: user.username },
     });
   } catch (error) {
@@ -84,5 +98,12 @@ export const profile = (req, res) => {
 
 // POST /api/auth/logout
 export const logout = (_req, res) => {
+  const isProd = process.env.NODE_ENV === 'production';
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: 'lax',
+    path: '/',
+  });
   return res.json({ success: true, message: 'Logout successful' });
 };

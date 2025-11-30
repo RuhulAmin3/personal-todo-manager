@@ -6,20 +6,17 @@ const API = {
   todos: '/api/todos',
 };
 
-const getToken = () => window.localStorage.getItem('token');
-const setToken = (t) => window.localStorage.setItem('token', t);
-const clearToken = () => window.localStorage.removeItem('token');
-
-const authHeader = () => ({ Authorization: `Bearer ${getToken()}` });
+// Use HttpOnly cookies set by the server; no tokens in localStorage
 
 async function apiGet(url) {
-  const res = await fetch(url, { headers: authHeader() });
+  const res = await fetch(url, { credentials: 'include' });
   return res.json();
 }
 async function apiPost(url, body) {
   const res = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...authHeader() },
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify(body),
   });
   return res.json();
@@ -27,13 +24,14 @@ async function apiPost(url, body) {
 async function apiPut(url, body) {
   const res = await fetch(url, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json', ...authHeader() },
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify(body),
   });
   return res.json();
 }
 async function apiDelete(url) {
-  const res = await fetch(url, { method: 'DELETE', headers: authHeader() });
+  const res = await fetch(url, { method: 'DELETE', credentials: 'include' });
   return res.json();
 }
 
@@ -45,7 +43,6 @@ window.handleSignup = async (e) => {
   const data = await apiPost(API.signup, { username, password });
   const msg = document.querySelector('#signup-msg');
   if (data.success) {
-    setToken(data.token);
     window.location.href = '/dashboard';
   } else {
     msg.textContent = data.message || 'Signup failed';
@@ -59,7 +56,6 @@ window.handleLogin = async (e) => {
   const data = await apiPost(API.login, { username, password });
   const msg = document.querySelector('#login-msg');
   if (data.success) {
-    setToken(data.token);
     window.location.href = '/dashboard';
   } else {
     msg.textContent = data.message || 'Login failed';
@@ -68,7 +64,6 @@ window.handleLogin = async (e) => {
 
 window.handleLogout = async () => {
   const data = await apiPost(API.logout, {});
-  clearToken();
   window.location.href = '/';
 };
 
@@ -76,11 +71,11 @@ window.handleLogout = async () => {
 async function loadTodos() {
   const list = document.querySelector('#todo-list');
   const empty = document.querySelector('#todo-empty');
-  if (!getToken()) {
+  const data = await apiGet(API.todos);
+  if (!data.success) {
     window.location.href = '/login';
     return;
   }
-  const data = await apiGet(API.todos);
   list.innerHTML = '';
   if (!data.success || !data.todos || data.todos.length === 0) {
     empty.style.display = 'block';
@@ -147,11 +142,11 @@ window.deleteTodo = async (id) => {
 };
 
 async function loadProfile() {
-  if (!getToken()) {
+  const data = await apiGet(API.profile);
+  if (!data.success) {
     window.location.href = '/login';
     return;
   }
-  const data = await apiGet(API.profile);
   const el = document.querySelector('#profile');
   if (data.success) {
     el.innerHTML = `<div class="card"><div class="title">@${data.user.username}</div><div class="muted">User ID: ${data.user.id}</div></div>`;
