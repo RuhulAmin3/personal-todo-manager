@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body data-page="<%= page || '' %>">
+    <div class="container">
+      <nav class="nav">
+        <div class="brand">📝 Personal Todo</div>
+        <div>
+          <a href="/">Home</a>
+          <a href="/dashboard">Dashboard</a>
+          <a href="/profile">Profile</a>
+          <a href="/login">Login</a>
+          <a href="/signup">Signup</a>
+          <button class="btn btn-outline" onclick="handleLogout()">Logout</button>
+        </div>
+      </nav>
+      <main>

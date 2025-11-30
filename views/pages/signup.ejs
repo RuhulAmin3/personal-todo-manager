@@ -1,0 +1,14 @@
+<%- include('../partials/head', { title: 'Signup · Personal Todo', page: 'signup' }) %>
+<div class="card">
+  <h1 class="title">Create Account</h1>
+  <form onsubmit="handleSignup(event)">
+    <div class="row">
+      <input id="signup-username" class="input" placeholder="Username" required />
+      <input id="signup-password" class="input" type="password" placeholder="Password (min 6, special char)" required />
+    </div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" type="submit">Sign Up</button>
+    <span id="signup-msg" class="muted" style="margin-left: .75rem;"></span>
+  </form>
+</div>
+<%- include('../partials/foot') %>

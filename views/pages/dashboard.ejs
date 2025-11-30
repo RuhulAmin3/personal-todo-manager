@@ -1,0 +1,14 @@
+<%- include('../partials/head', { title: 'Dashboard · Personal Todo', page: 'dashboard' }) %>
+<div class="card">
+  <h1 class="title">Your Todos</h1>
+  <form onsubmit="createTodo(event)">
+    <div class="row">
+      <input id="todo-input" class="input" placeholder="Add a new todo..." />
+      <button class="btn btn-primary" type="submit">Add</button>
+    </div>
+  </form>
+  <div class="spacer"></div>
+  <ul id="todo-list" class="list"></ul>
+  <div id="todo-empty" class="muted" style="display:none;">No todos yet. Add one!</div>
+</div>
+<%- include('../partials/foot') %>

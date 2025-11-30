@@ -1,0 +1,14 @@
+<%- include('../partials/head', { title: 'Login · Personal Todo', page: 'login' }) %>
+<div class="card">
+  <h1 class="title">Login</h1>
+  <form onsubmit="handleLogin(event)">
+    <div class="row">
+      <input id="login-username" class="input" placeholder="Username" required />
+      <input id="login-password" class="input" type="password" placeholder="Password" required />
+    </div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" type="submit">Login</button>
+    <span id="login-msg" class="muted" style="margin-left: .75rem;"></span>
+  </form>
+</div>
+<%- include('../partials/foot') %>

@@ -1,0 +1,24 @@
+{
+  "name": "personal-todo-app",
+  "version": "1.0.0",
+  "description": "A secure Todo app with JWT authentication",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.18.2",
+    "joi": "^18.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.0.1"
+  }
+}
