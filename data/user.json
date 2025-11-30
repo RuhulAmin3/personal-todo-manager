@@ -4,5 +4,11 @@
     "username": "amin",
     "password": "$2a$12$rM3oXmsj.SvAeWV.UVJ8jev2iqa8.bjz0/xWocY7efjlHYNaQe4Gy",
     "createdAt": "2025-11-30T05:23:05.487Z"
+  },
+  {
+    "id": "b6ea7f3b-9c4d-4315-b3c0-c1f14dad5f81",
+    "username": "ruhul",
+    "password": "$2a$12$Clm0Q38j9smGnjAvaRYsTuLJQYvdwin2bBxfCfUpTsszVxzNfhL2.",
+    "createdAt": "2025-11-30T05:33:13.217Z"
   }
 ]

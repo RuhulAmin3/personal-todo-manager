@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "9053b8a6-4ce9-4505-83ac-80ff82b79789",
+    "userId": "b6ea7f3b-9c4d-4315-b3c0-c1f14dad5f81",
+    "text": "Task One",
+    "completed": false,
+    "createdAt": "2025-11-30T05:33:23.378Z",
+    "updatedAt": "2025-11-30T05:33:23.378Z"
+  },
+  {
+    "id": "c5dd5d4b-e0ca-4f16-8bd6-8cc013b9bc20",
+    "userId": "b6ea7f3b-9c4d-4315-b3c0-c1f14dad5f81",
+    "text": "Task authentication Implementation",
+    "completed": true,
+    "createdAt": "2025-11-30T05:33:35.667Z",
+    "updatedAt": "2025-11-30T05:33:39.072Z"
+  },
+  {
+    "id": "10081c3c-00dc-4f1e-a7b8-ad84d57a6b7b",
+    "userId": "9a2087b3-8f70-4b00-8e94-1e060773e4f5",
+    "text": "Complete Management",
+    "completed": true,
+    "createdAt": "2025-11-30T05:34:46.488Z",
+    "updatedAt": "2025-11-30T05:35:25.141Z"
+  }
+]

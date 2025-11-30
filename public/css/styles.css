@@ -9,13 +9,15 @@
   --success: #22c55e;
 }
 * { box-sizing: border-box; }
+html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   background: linear-gradient(180deg, #0b1220, #0f172a);
   color: var(--text);
 }
-.container { max-width: 960px; margin: 0 auto; padding: 2rem; }
+.container { max-width: 960px; margin: 0 auto; padding: 2rem; min-height: 100vh; display: flex; flex-direction: column; }
+.container main { flex: 1; }
 .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
 .nav a { color: var(--muted); text-decoration: none; margin-left: 1rem; }
 .brand { font-weight: 700; letter-spacing: .4px; }
@@ -36,4 +38,4 @@ body {
 .muted { color: var(--muted); font-size: .9rem; }
 .actions { display: flex; gap: .5rem; }
 .spacer { height: 1rem; }
-footer { text-align: center; margin-top: 2rem; color: var(--muted); }
+footer { text-align: center; margin-top: auto; padding-top: 1rem; color: var(--muted); }
